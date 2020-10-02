@@ -44,6 +44,8 @@ import webbrowser
 
 from tkFileDialog import askopenfilename, asksaveasfilename
 
+from tinymce import tinyjs, editor
+
 
 
 
@@ -147,6 +149,17 @@ def copy():
     text.clipboard_append(text.selection_get())
 
 
+def initialize_tinymce():
+
+    instance = tinymce.configure(tinyjs, editor)
+
+    if instance:
+
+        return instance
+    else
+        return None
+
+
 
 def paste():
 
@@ -173,6 +186,15 @@ def clear():
 def clearall():
 
     text.delete(1.0 , END)
+    
+
+def closest_word_suggest():
+
+    match_found = match_word_present_in_trie(keyword)
+
+    if match_found:
+
+        return match_found
 
 
 
@@ -185,6 +207,16 @@ def background():
        text.config(background=color)
 
 
+
+def auto_correct():
+
+    match = closest_word_suggest(keyword)
+
+    if match:
+        correct = match
+        return correct
+        
+        
 
 def about():
 
